@@ -23,4 +23,9 @@ public class FundService {
     public List<Fund> findAll() {
         return fundRepository.findAll();
     }
+
+    @Transactional
+    public void save(Fund fund) {
+        fundRepository.save(fund);
+    }
 }

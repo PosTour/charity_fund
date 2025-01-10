@@ -23,4 +23,8 @@ public class ServiceService {
     public List<ru.bmstu.charity.domain.Service> findAll() {
         return serviceRepository.findAll();
     }
+
+    public void save(ru.bmstu.charity.domain.Service service) {
+        serviceRepository.save(service);
+    }
 }

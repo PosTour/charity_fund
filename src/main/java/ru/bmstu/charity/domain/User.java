@@ -2,6 +2,7 @@ package ru.bmstu.charity.domain;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -56,6 +57,8 @@ public class User {
     @Column(name = "username")
     private String username;
 
+    @NotEmpty
+    @NotNull
     @Column(name = "password")
     private String password;
 

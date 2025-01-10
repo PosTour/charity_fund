@@ -4,6 +4,8 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,6 +23,8 @@ public class Client extends User {
             message = "Полное имя имеет следующий вид: 'Фамилия Имя Отчество'")
     private String name;
 
+    @NotEmpty
+    @NotNull
     @Column(name = "address")
     private String address;
 

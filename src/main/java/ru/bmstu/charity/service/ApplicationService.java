@@ -26,12 +26,12 @@ public class ApplicationService {
 
     @Transactional
     public void approve(int id) {
-        var applicationOpt = applicationRepository.findById(id);
-        if (applicationOpt.isPresent()) {
-            var application = applicationOpt.get();
-            application.setIsApproved(true);
-            applicationRepository.save(application);
-        }
+        setApprovalStatus(id, true);
+    }
+
+    @Transactional
+    public void disapprove(int id) {
+        setApprovalStatus(id, false);
     }
 
     public Optional<Application> findById(int id) {
@@ -80,6 +80,15 @@ public class ApplicationService {
             return applicationRepository.findAllByFund(fundOpt.get());
         }
         return Collections.emptyList();
+    }
+
+    private void setApprovalStatus(int id, Boolean isApproved) {
+        var applicationOpt = applicationRepository.findById(id);
+        if (applicationOpt.isPresent()) {
+            var application = applicationOpt.get();
+            application.setIsApproved(isApproved);
+            applicationRepository.save(application);
+        }
     }
 
     private List<Application> findByClientId(int id, Boolean isApproved) {

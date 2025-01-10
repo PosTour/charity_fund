@@ -30,7 +30,7 @@ public class Application {
     private Fund fund;
 
     @Column(name = "is_approved")
-    private boolean isApproved;
+    private Boolean isApproved;
 
     @Column(name = "details")
     private String details;
@@ -38,10 +38,9 @@ public class Application {
     @Column(name = "created_at")
     private String createdAt;
 
-    public Application(Service service, Client client, Fund fund, String details, String createdAt) {
+    public Application(Service service, Client client, String details, String createdAt) {
         this.service = service;
         this.client = client;
-        this.fund = fund;
         this.details = details;
         this.createdAt = createdAt;
     }

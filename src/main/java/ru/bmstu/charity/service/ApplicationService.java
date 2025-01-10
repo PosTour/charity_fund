@@ -7,6 +7,7 @@ import ru.bmstu.charity.domain.Application;
 import ru.bmstu.charity.repository.ApplicationRepository;
 
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,6 +24,7 @@ public class ApplicationService {
     public void save(Application application) {
         var client = clientService.findCurrentClient().get();
         application.setClient(client);
+        application.setCreatedAt(new Date());
 
         applicationRepository.save(application);
     }

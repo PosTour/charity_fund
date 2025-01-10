@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.util.Date;
 
 @Entity
 @Table(name = "application")
@@ -36,9 +39,11 @@ public class Application {
     private String details;
 
     @Column(name = "created_at")
-    private String createdAt;
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    private Date createdAt;
 
-    public Application(Service service, Client client, String details, String createdAt) {
+    public Application(Service service, Client client, String details, Date createdAt) {
         this.service = service;
         this.client = client;
         this.details = details;

@@ -2,6 +2,7 @@ package ru.bmstu.charity.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.bmstu.charity.domain.Application;
 import ru.bmstu.charity.repository.ApplicationRepository;
 
@@ -11,16 +12,19 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class ApplicationService {
 
     private final ApplicationRepository applicationRepository;
     private final ClientService clientService;
     private final FundService fundService;
 
+    @Transactional
     public void save(Application application) {
         applicationRepository.save(application);
     }
 
+    @Transactional
     public void approve(int id) {
         var applicationOpt = applicationRepository.findById(id);
         if (applicationOpt.isPresent()) {

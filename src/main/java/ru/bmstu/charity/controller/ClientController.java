@@ -15,9 +15,15 @@ public class ClientController {
 
     private final ClientService clientService;
 
-    @GetMapping("/dashboard")
-    public String dashboard() {
-        return "dashboard/client-dashboard";
+    @GetMapping("/home")
+    public String home() {
+        return "home/client-home";
+    }
+
+    @GetMapping("profile")
+    public String profile(Model model) {
+        model.addAttribute("client", clientService.findCurrentClient());
+        return "client/client-profile";
     }
 
     @GetMapping("/employee/{id}")

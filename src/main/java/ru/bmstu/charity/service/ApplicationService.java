@@ -1,13 +1,9 @@
 package ru.bmstu.charity.service;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.bmstu.charity.domain.Application;
-import ru.bmstu.charity.domain.Client;
 import ru.bmstu.charity.repository.ApplicationRepository;
 
 import java.util.Collections;
@@ -22,11 +18,10 @@ public class ApplicationService {
     private final ApplicationRepository applicationRepository;
     private final ClientService clientService;
     private final FundService fundService;
-    private final UserService userService;
 
     @Transactional
     public void save(Application application) {
-        var client = findCurrentClient().get();
+        var client = clientService.findCurrentClient().get();
         application.setClient(client);
 
         applicationRepository.save(application);
@@ -63,7 +58,7 @@ public class ApplicationService {
     }
 
     public List<Application> findAllForCurrentClient() {
-        var clientOpt = findCurrentClient();
+        var clientOpt = clientService.findCurrentClient();
 
         if (clientOpt.isPresent()) {
             return applicationRepository.findAllByClient(clientOpt.get());
@@ -114,17 +109,5 @@ public class ApplicationService {
             return applicationRepository.findAllApplicationByIsApprovedAndClient(isApproved, clientOpt.get());
         }
         return Collections.emptyList();
-    }
-
-    private Optional<Client> findCurrentClient() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-
-        if (authentication != null && authentication.getPrincipal() instanceof UserDetails) {
-            String username = authentication.getName();
-            var user = userService.findByUsername(username).get();
-            return clientService.findById(user.getId());
-        }
-
-        return Optional.empty();
     }
 }

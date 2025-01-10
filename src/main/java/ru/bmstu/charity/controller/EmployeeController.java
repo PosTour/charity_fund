@@ -15,9 +15,15 @@ public class EmployeeController {
 
     private final EmployeeService employeeService;
 
-    @GetMapping("/dashboard")
-    public String dashboard() {
-        return "dashboard/employee-dashboard";
+    @GetMapping("/home")
+    public String home() {
+        return "home/employee-home";
+    }
+
+    @GetMapping("profile")
+    public String profile(Model model) {
+        model.addAttribute("employee", employeeService.findCurrentEmployee());
+        return "employee/employee-profile";
     }
 
     @GetMapping("{id}")

@@ -6,29 +6,24 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import ru.bmstu.charity.service.EmployeeService;
+import ru.bmstu.charity.service.UserService;
 
 @Controller
-@RequestMapping("employee")
+@RequestMapping("user/employee")
 @RequiredArgsConstructor
-public class EmployeeController {
+public class UserController {
 
-    private final EmployeeService employeeService;
-
-    @GetMapping("/dashboard")
-    public String dashboard() {
-        return "dashboard/employee-dashboard";
-    }
+    private final UserService userService;
 
     @GetMapping("{id}")
     public String findById(@PathVariable("id") int id, Model model) {
-        model.addAttribute("employee", employeeService.findById(id));
-        return "emloyee/employee";
+        model.addAttribute("user", userService.findById(id).get());
+        return "user/user";
     }
 
     @GetMapping("")
     public String findAll(Model model) {
-        model.addAttribute("employee", employeeService.findAll());
-        return "emloyee/employee-list";
+        model.addAttribute("users", userService.findAll());
+        return "user/user-list";
     }
 }

@@ -36,4 +36,12 @@ public class Client extends User {
     @Column(name = "email")
     @Email(message = "Некорректный адрес электронной почты")
     private String email;
+
+    public Client(String username, String password, Role role, String name, String address, String phone, String email) {
+        super(username, password, role);
+        this.name = name;
+        this.address = address;
+        this.phone = phone;
+        this.email = email;
+    }
 }

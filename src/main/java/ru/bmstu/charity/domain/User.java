@@ -66,9 +66,9 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    public User(String username, String password, String role) {
+    public User(String username, String password, Role role) {
         this.username = username;
         this.password = password;
-        this.role = Role.getTypeByString(role);
+        this.role = role;
     }
 }

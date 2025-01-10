@@ -26,4 +26,10 @@ public class Employee extends User {
     @NotNull
     @Column(name = "phone")
     private String position;
+
+    public Employee(String username, String password, Role role, String name, String position) {
+        super(username, password, role);
+        this.name = name;
+        this.position = position;
+    }
 }

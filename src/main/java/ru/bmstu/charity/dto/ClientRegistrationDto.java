@@ -1,7 +1,13 @@
 package ru.bmstu.charity.dto;
 
 import jakarta.validation.constraints.*;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
+@Getter
+@Setter
+@RequiredArgsConstructor
 public class ClientRegistrationDto {
 
     @NotEmpty(message = "Поле логина должно быть заполнено")

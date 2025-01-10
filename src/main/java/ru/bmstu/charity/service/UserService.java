@@ -32,8 +32,6 @@ public class UserService {
 
     @Transactional
     public void save(User user) {
-        String encodedPassword = passwordEncoder.encode(user.getPassword());
-        user.setPassword(encodedPassword);
         userRepository.save(user);
     }
 }

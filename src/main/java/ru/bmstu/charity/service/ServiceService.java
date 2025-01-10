@@ -24,7 +24,17 @@ public class ServiceService {
         return serviceRepository.findAll();
     }
 
+    @Transactional
     public void save(ru.bmstu.charity.domain.Service service) {
         serviceRepository.save(service);
+    }
+
+    @Transactional
+    public void update(int id, ru.bmstu.charity.domain.Service updatedService) {
+        var service = serviceRepository.findById(id);
+        if (service.isPresent()) {
+            updatedService.setId(id);
+            serviceRepository.save(updatedService);
+        }
     }
 }

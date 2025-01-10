@@ -28,4 +28,13 @@ public class FundService {
     public void save(Fund fund) {
         fundRepository.save(fund);
     }
+
+    @Transactional
+    public void update(int id, Fund updatedFund) {
+        var fund = fundRepository.findById(id);
+        if (fund.isPresent()) {
+            updatedFund.setId(id);
+            fundRepository.save(updatedFund);
+        }
+    }
 }

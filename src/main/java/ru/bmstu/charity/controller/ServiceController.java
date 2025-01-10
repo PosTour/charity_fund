@@ -41,6 +41,23 @@ public class ServiceController {
             return "service/service-form";
         }
         serviceService.save(service);
-        return "redirect:";
+        return "redirect:/service/employee";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String edit(@PathVariable int id, Model model) {
+        model.addAttribute("service", serviceService.findById(id).get());
+        return "service/service-edit-form";
+    }
+
+    @PatchMapping("/update/{id}")
+    public String update(@PathVariable("id") int id,
+                         @ModelAttribute("fund") Service service,
+                         BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "service/service-edit-form";
+        }
+        serviceService.update(id, service);
+        return "redirect:/service/employee";
     }
 }

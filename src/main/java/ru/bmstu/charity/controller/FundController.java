@@ -41,6 +41,23 @@ public class FundController {
             return "fund/fund-form";
         }
         fundService.save(fund);
-        return "redirect:";
+        return "redirect:/fund/employee";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String edit(@PathVariable int id, Model model) {
+        model.addAttribute("fund", fundService.findById(id).get());
+        return "fund/fund-edit-form";
+    }
+
+    @PatchMapping("/update/{id}")
+    public String update(@PathVariable("id") int id,
+                         @ModelAttribute("fund") Fund fund,
+                         BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "fund/fund-edit-form";
+        }
+        fundService.update(id, fund);
+        return "redirect:/fund/employee";
     }
 }

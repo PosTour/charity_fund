@@ -14,8 +14,8 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(auth -> auth
-                    .requestMatchers("/auth/login", "/auth/access-denied", "auth/register", "/css/**", "/public/**").permitAll()
-                    .requestMatchers("/employee/**").hasRole("EMPLOYEE")
+                    .requestMatchers("/auth/login", "/auth/access-denied", "auth/register", "/css/**", "/client/dashboard").permitAll()
+                    .requestMatchers(request -> request.getRequestURI().contains("employee")).hasRole("EMPLOYEE")
                     .anyRequest().authenticated()
                 )
                 .formLogin(form -> form

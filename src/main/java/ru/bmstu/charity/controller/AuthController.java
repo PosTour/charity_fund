@@ -32,7 +32,7 @@ public class AuthController {
     @GetMapping("/register")
     public String showRegistrationForm(Model model) {
         model.addAttribute("registrationDto", new ClientRegistrationDto());
-        return "auth/register";
+        return "auth/register-client";
     }
 
     @PostMapping("/register")
@@ -40,7 +40,7 @@ public class AuthController {
                                BindingResult bindingResult,
                                Model model) {
         if (bindingResult.hasErrors()) {
-            return "auth/register";
+            return "auth/register-client";
         }
 
         try {
@@ -48,7 +48,7 @@ public class AuthController {
             return "redirect:/auth/login?registered=true";
         } catch (Exception e) {
             model.addAttribute("errorMessage", "Ошибка регистрации: " + e.getMessage());
-            return "auth/register";
+            return "auth/register-client";
         }
     }
 }

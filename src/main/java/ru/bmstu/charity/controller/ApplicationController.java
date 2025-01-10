@@ -35,13 +35,13 @@ public class ApplicationController {
         return "redirect:";
     }
 
-    @PatchMapping("/approve/{id}")
+    @PatchMapping("/employee/approve/{id}")
     public String approve(@PathVariable("id") int id) {
         applicationService.approve(id);
         return "redirect:";
     }
 
-    @PatchMapping("/approve/{id}")
+    @PatchMapping("/employee/disapprove/{id}")
     public String disapprove(@PathVariable("id") int id) {
         applicationService.disapprove(id);
         return "redirect:";
@@ -49,36 +49,35 @@ public class ApplicationController {
 
     @GetMapping("/{id}")
     public String findById(@PathVariable("id") int id, Model model) {
-        var applicationOpt = applicationService.findById(id);
-        model.addAttribute("application", applicationOpt.get());
+        model.addAttribute("application", applicationService.findById(id).get());
         return "application/application";
     }
 
-    @GetMapping("fund/{id}")
+    @GetMapping("/employee/fund/{id}")
     public String findByAllByFundId(@PathVariable("id") int id, Model model) {
         model.addAttribute("applications", applicationService.findAllByFundId(id));
         return "application/application-list";
     }
 
-    @GetMapping()
+    @GetMapping("/employee")
     public String findAll(Model model) {
         model.addAttribute("applications", applicationService.findAll());
         return "application/application-list";
     }
 
-    @GetMapping("/approved")
+    @GetMapping("/employee/approved")
     public String findApproved(Model model) {
         model.addAttribute("applications", applicationService.findApproved());
         return "application/application-list";
     }
 
-    @GetMapping("/disapproved")
+    @GetMapping("/employee/disapproved")
     public String findDisapproved(Model model) {
         model.addAttribute("applications", applicationService.findDisapproved());
         return "application/application-list";
     }
 
-    @GetMapping("/pending")
+    @GetMapping("/employee/pending")
     public String findPending(Model model) {
         model.addAttribute("applications", applicationService.findPending());
         return "application/application-list";
@@ -90,25 +89,25 @@ public class ApplicationController {
         return "application/application-list";
     }
 
-    @GetMapping("/client/{id}")
+    @GetMapping("/employee/client/{id}")
     public String findByAllByClientId(@PathVariable("id") int id, Model model) {
         model.addAttribute("applications", applicationService.findAllByClientId(id));
         return "application/application-list";
     }
 
-    @GetMapping("/client/approved/{id}")
+    @GetMapping("/employee/client/approved/{id}")
     public String findApprovedByClientId(@PathVariable("id") int id, Model model) {
         model.addAttribute("applications", applicationService.findApprovedByClientId(id));
         return "application/application-list";
     }
 
-    @GetMapping("/client/disapproved/{id}")
+    @GetMapping("/employee/client/disapproved/{id}")
     public String findDisapprovedByClientId(@PathVariable("id") int id, Model model) {
         model.addAttribute("applications", applicationService.findDisapprovedByClientId(id));
         return "application/application-list";
     }
 
-    @GetMapping("/client/pending/{id}")
+    @GetMapping("/employee/client/pending/{id}")
     public String findPendingByClientId(@PathVariable("id") int id, Model model) {
         model.addAttribute("applications", applicationService.findPendingByClientId(id));
         return "application/application-list";

@@ -41,8 +41,7 @@ public class User {
             return LOOKUP_MAP.get(type);
         }
 
-        @Override
-        public String toString() {
+        public String getLabel() {
             return label;
         }
     }

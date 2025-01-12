@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная - Клиент</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<header class="header">
+    <div class="logo">
+        <a href="/client/home"><img src="/icons/logo.jpeg" alt="Логотип" class="logo-img"></a>
+        <h1>Рука Помощи</h1>
+    </div>
+    <nav class="nav">
+        <ul class="nav-list">
+            <li><a href="/client/profile">Личный кабинет</a></li>
+            <li><a href="/application/client">Мои заявки</a></li>
+            <li><a href="/application/new">Создать заявку</a></li>
+            <li><a href="/funds/list">Список фондов</a></li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+    <h2>Добро пожаловать!</h2>
+    <div class="welcome-text">
+        <p>Вы можете оставить заявку, просмотреть свои заявки или ознакомиться со списком фондов.</p>
+        <div class="news">
+            <h3>Новости организации</h3>
+            <ul>
+                <li>Новая акция по сбору средств на лечение детей</li>
+                <li>Мы открыли новый фонд для помощи семьям</li>
+                <li>Присоединяйтесь к нашим волонтерским программам</li>
+            </ul>
+        </div>
+    </div>
+</main>
+<footer class="footer">
+    <p>© Рука Помощи, 2024</p>
+</footer>
+</body>
+</html>

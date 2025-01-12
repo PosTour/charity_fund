@@ -52,6 +52,10 @@
             <span class="detail-value" th:text="${client.getAddress()}"></span>
         </div>
     </div>
+
+    <div class="actions">
+        <a th:href="@{'/application/employee/client/' + ${client.getId()}}" class="action-btn">Заявки клиента</a>
+    </div>
 </main>
 <footer class="footer">
     <p>© Рука Помощи, 2024</p>

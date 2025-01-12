@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Услуга</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<header class="header">
+    <div class="logo">
+        <a href="/employee/home"><img src="/icons/logo.jpeg" alt="Логотип" class="logo-img"></a>
+        <h1>Рука Помощи</h1>
+    </div>
+    <nav class="nav">
+        <ul class="nav-list">
+            <li><a href="/employee/profile">Личный кабинет</a></li>
+            <li><a href="/application/employee">Заявки</a></li>
+            <li><a href="/client/employee">Клиенты</a></li>
+            <li><a href="/employee">Сотрудники</a></li>
+            <li><a href="/fund/employee">Фонды</a></li>
+            <li><a href="/service/employee">Услуги</a></li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+    <h2>Редактирование услуги</h2>
+
+    <form th:method="PATCH" th:action="@{/service/employee/update/{id}(id=${service.getId()})}" th:object="${service}" class="application-form">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+
+        <div class="form-group">
+            <label for="name">Название:</label>
+            <textarea id="name" name="name" rows="5" required></textarea>
+            <div th:if="${#fields.hasErrors('name')}" class="error-message">
+                <p th:errors="*{name}">Ошибка в названии</p>
+            </div>
+        </div>
+
+        <button type="submit" class="submit-btn">Применить</button>
+    </form>
+</main>
+<footer class="footer">
+    <p>© Рука Помощи, 2024</p>
+</footer>
+</body>
+</html>

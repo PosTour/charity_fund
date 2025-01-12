@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Услуга</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<header class="header">
+    <div class="logo">
+        <a href="/employee/home"><img src="/icons/logo.jpeg" alt="Логотип" class="logo-img"></a>
+        <h1>Рука Помощи</h1>
+    </div>
+    <nav class="nav">
+        <ul class="nav-list">
+            <li><a href="/employee/profile">Личный кабинет</a></li>
+            <li><a href="/application/employee">Заявки</a></li>
+            <li><a href="/client/employee">Клиенты</a></li>
+            <li><a href="/employee">Сотрудники</a></li>
+            <li><a href="/fund/employee">Фонды</a></li>
+            <li><a href="/service/employee">Услуги</a></li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+    <h2>Услуга</h2>
+
+    <div class="details-container">
+        <div class="detail-item">
+            <span class="detail-label">Идентификатор:</span>
+            <span class="detail-value" th:text="${service.getId()}"></span>
+        </div>
+        <div class="detail-item">
+            <span class="detail-label">Название:</span>
+            <span class="detail-value" th:text="${service.getName()}"></span>
+        </div>
+    </div>
+
+    <div class="actions">
+        <a th:href="@{'/service/employee'}" class="action-btn">Вернуться к списку</a>
+        <a th:href="@{'/service/employee/edit/' + ${service.getId()}}" class="action-btn">Редактировать</a>
+    </div>
+</main>
+<footer class="footer">
+    <p>© Рука Помощи, 2024</p>
+</footer>
+</body>
+</html>

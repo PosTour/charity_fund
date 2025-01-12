@@ -1,6 +1,8 @@
 package ru.bmstu.charity.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,8 +21,8 @@ public class Service {
     private int id;
 
     @Column(name = "name")
-    @Pattern(regexp = "[А-Я]\\w+",
-            message = "Название категории должно начинаться с большой буквы")
+    @NotNull
+    @NotEmpty
     private String name;
 
     public Service(String name) {

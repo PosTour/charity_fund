@@ -21,7 +21,6 @@ public class EmployeeRegistrationDto {
     @NotNull
     private String password;
 
-    @NotEmpty
     private String role;
 
     @Pattern(regexp = "^[А-ЯЁ][a-яё]+ [А-ЯЁ][a-яё]+ [А-ЯЁ][a-яё]+$",

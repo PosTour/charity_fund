@@ -20,7 +20,7 @@ public class ClientController {
         return "home/client-home";
     }
 
-    @GetMapping("profile")
+    @GetMapping("/profile")
     public String profile(Model model) {
         model.addAttribute("client", clientService.findCurrentClient());
         return "client/client-profile";

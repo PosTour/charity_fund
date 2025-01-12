@@ -43,10 +43,22 @@ public class Application {
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date createdAt;
 
-    public Application(Service service, Client client, String details, Date createdAt) {
+    public Application(Service service, Client client, Fund fund, String details, Date createdAt) {
         this.service = service;
         this.client = client;
+        this.fund = fund;
         this.details = details;
         this.createdAt = createdAt;
+    }
+
+    public String getStatus() {
+        if (isApproved == null) {
+            return "Рассматривается";
+        }
+        if (isApproved) {
+            return "Одобрена";
+        } else {
+            return "Отклонена";
+        }
     }
 }

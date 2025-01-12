@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Детали заявки</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<header class="header">
+    <div class="logo">
+        <a href="/employee/home"><img src="/icons/logo.jpeg" alt="Логотип" class="logo-img"></a>
+        <h1>Рука Помощи</h1>
+    </div>
+    <nav class="nav">
+        <ul class="nav-list">
+            <li><a href="/employee/profile">Личный кабинет</a></li>
+            <li><a href="/application/employee">Просмотр заявок</a></li>
+            <li><a href="/client/employee">Просмотр клиентов</a></li>
+            <li><a href="/employee">Просмотр сотрудников</a></li>
+            <li><a href="/fund/employee">Список фондов</a></li>
+            <li><a href="/service/employee">Оказываемые услуги</a></li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+    <h2>Детали заявки</h2>
+
+    <div class="details-container">
+        <div class="detail-item">
+            <span class="detail-label">Номер заявки:</span>
+            <span class="detail-value" th:text="${app.getId()}"></span>
+        </div>
+        <div class="detail-item">
+            <span class="detail-label">Название услуги:</span>
+            <span class="detail-value" th:text="${app.getService().getName()}"></span>
+        </div>
+        <div class="detail-item">
+            <span class="detail-label">Клиент:</span>
+            <span class="detail-value" th:text="${app.getClient().getName()}"></span>
+        </div>
+        <div class="detail-item">
+            <span class="detail-label">Фонд:</span>
+            <span class="detail-value" th:text="${app.getFund().getName()}"></span>
+        </div>
+        <div class="detail-item">
+            <span class="detail-label">Статус:</span>
+            <span class="detail-value" th:text="${app.getStatus()}"></span>
+        </div>
+        <div class="detail-item">
+            <span class="detail-label">Дата создания:</span>
+            <span class="detail-value" th:text="${#dates.format(app.getCreatedAt(), 'dd/MM/yyyy')}"></span>
+        </div>
+        <div class="detail-item">
+            <span class="detail-label">Детали:</span>
+            <span class="detail-value" th:text="${app.getDetails()}"></span>
+        </div>
+    </div>
+
+    <div class="actions">
+        <a href="/application/employee" class="action-btn">Вернуться к списку</a>
+        <div th:if="${app.getIsApproved()} == null">
+            <form th:action="@{'/application/employee/approve/' + ${app.getId()}}" th:method="PATCH" class="inline-form">
+                <button type="submit" class="action-btn approve-btn">Одобрить</button>
+            </form>
+            <form th:action="@{'/application/employee/disapprove/' + ${app.getId()}}" th:method="PATCH" class="inline-form">
+                <button type="submit" class="action-btn disapprove-btn">Отклонить</button>
+            </form>
+        </div>
+    </div>
+</main>
+<footer class="footer">
+    <p>© Рука Помощи, 2024</p>
+</footer>
+</body>
+</html>

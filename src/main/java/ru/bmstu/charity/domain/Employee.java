@@ -24,7 +24,7 @@ public class Employee extends User {
 
     @NotEmpty
     @NotNull
-    @Column(name = "phone")
+    @Column(name = "position")
     private String position;
 
     public Employee(String username, String password, Role role, String name, String position) {

@@ -18,8 +18,6 @@ public class ClientRegistrationDto {
     @NotNull
     private String password;
 
-    @NotEmpty
-    @NotNull
     private String role;
 
     @Pattern(regexp = "^[А-ЯЁ][a-яё]+ [А-ЯЁ][a-яё]+ [А-ЯЁ][a-яё]+$",

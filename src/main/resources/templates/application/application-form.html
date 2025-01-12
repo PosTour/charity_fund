@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Создание заявки</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<header class="header">
+    <div class="logo">
+        <a href="/client/home"><img src="/icons/logo.jpeg" alt="Логотип" class="logo-img"></a>
+        <h1>Рука Помощи</h1>
+    </div>
+    <nav class="nav">
+        <ul class="nav-list">
+            <li><a href="/client/profile">Личный кабинет</a></li>
+            <li><a href="/application/client">Мои заявки</a></li>
+            <li><a href="/application/new">Создать заявку</a></li>
+            <li><a href="/funds/list">Список фондов</a></li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+    <h2>Создание заявки</h2>
+
+    <form th:method="POST" th:action="@{/application/add}" th:object="${app}" class="application-form">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+
+        <div class="form-group">
+            <label for="service">Услуга:</label>
+            <select id="service" name="service" required>
+                <option value="" disabled selected>Выберите услугу</option>
+                <option th:each="service : ${services}" th:value="${service.getId()}" th:text="${service.getName()}"></option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="fund">Фонд:</label>
+            <select id="fund" name="fund" required>
+                <option value="" disabled selected>Выберите фонд</option>
+                <option th:each="fund : ${funds}" th:value="${fund.getId()}" th:text="${fund.getName()}"></option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="details">Детали:</label>
+            <textarea id="details" name="details" rows="5" required></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn">Создать заявку</button>
+    </form>
+</main>
+<footer class="footer">
+    <p>© Рука Помощи, 2024</p>
+</footer>
+</body>
+</html>

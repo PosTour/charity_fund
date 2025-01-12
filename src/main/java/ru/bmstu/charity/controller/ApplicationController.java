@@ -8,6 +8,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ru.bmstu.charity.domain.Application;
 import ru.bmstu.charity.service.ApplicationService;
+import ru.bmstu.charity.service.FundService;
 import ru.bmstu.charity.service.ServiceService;
 
 @Controller
@@ -17,99 +18,107 @@ public class ApplicationController {
 
     private final ApplicationService applicationService;
     private final ServiceService serviceService;
+    private final FundService fundService;
 
     @GetMapping("/new")
     public String newApplication(Model model) {
-        model.addAttribute("application", new Application());
+        model.addAttribute("app", new Application());
         model.addAttribute("services", serviceService.findAll());
+        model.addAttribute("funds", fundService.findAll());
         return "application/application-form";
     }
 
     @PostMapping("/add")
-    public String create(@ModelAttribute("application") @Valid Application application,
+    public String create(@ModelAttribute("app") @Valid Application application,
                          BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "application/application-form";
         }
         applicationService.save(application);
-        return "redirect:";
+        return "redirect:application/client";
     }
 
     @PatchMapping("/employee/approve/{id}")
     public String approve(@PathVariable("id") int id) {
         applicationService.approve(id);
-        return "redirect:";
+        return "redirect:/application/employee";
     }
 
     @PatchMapping("/employee/disapprove/{id}")
     public String disapprove(@PathVariable("id") int id) {
         applicationService.disapprove(id);
-        return "redirect:";
+        return "redirect:/application/employee";
     }
 
     @GetMapping("/{id}")
+    public String findByIdForClient(@PathVariable("id") int id, Model model) {
+        model.addAttribute("app", applicationService.findById(id).get());
+        return "application/application-client";
+    }
+
+    @GetMapping("employee/{id}")
     public String findById(@PathVariable("id") int id, Model model) {
-        model.addAttribute("application", applicationService.findById(id).get());
+        model.addAttribute("app", applicationService.findById(id).get());
         return "application/application";
     }
 
     @GetMapping("/employee/fund/{id}")
     public String findByAllByFundId(@PathVariable("id") int id, Model model) {
-        model.addAttribute("applications", applicationService.findAllByFundId(id));
-        return "application/application-list";
+        model.addAttribute("apps", applicationService.findAllByFundId(id));
+        return "application/application-fund-list";
     }
 
     @GetMapping("/employee")
     public String findAll(Model model) {
-        model.addAttribute("applications", applicationService.findAll());
+        model.addAttribute("apps", applicationService.findAll());
         return "application/application-list";
     }
 
     @GetMapping("/employee/approved")
     public String findApproved(Model model) {
-        model.addAttribute("applications", applicationService.findApproved());
+        model.addAttribute("apps", applicationService.findApproved());
         return "application/application-list";
     }
 
     @GetMapping("/employee/disapproved")
     public String findDisapproved(Model model) {
-        model.addAttribute("applications", applicationService.findDisapproved());
+        model.addAttribute("apps", applicationService.findDisapproved());
         return "application/application-list";
     }
 
     @GetMapping("/employee/pending")
     public String findPending(Model model) {
-        model.addAttribute("applications", applicationService.findPending());
+        model.addAttribute("apps", applicationService.findPending());
         return "application/application-list";
     }
 
     @GetMapping("/client")
     public String findByAllForCurrentClient(Model model) {
-        model.addAttribute("applications", applicationService.findAllForCurrentClient());
-        return "application/application-list";
+        model.addAttribute("apps", applicationService.findAllForCurrentClient());
+        return "application/application-client-list";
     }
 
     @GetMapping("/employee/client/{id}")
     public String findByAllByClientId(@PathVariable("id") int id, Model model) {
-        model.addAttribute("applications", applicationService.findAllByClientId(id));
+        model.addAttribute("apps", applicationService.findAllByClientId(id));
         return "application/application-list";
     }
 
     @GetMapping("/employee/client/approved/{id}")
     public String findApprovedByClientId(@PathVariable("id") int id, Model model) {
-        model.addAttribute("applications", applicationService.findApprovedByClientId(id));
+        model.addAttribute("apps", applicationService.findApprovedByClientId(id));
         return "application/application-list";
     }
 
     @GetMapping("/employee/client/disapproved/{id}")
     public String findDisapprovedByClientId(@PathVariable("id") int id, Model model) {
-        model.addAttribute("applications", applicationService.findDisapprovedByClientId(id));
+        model.addAttribute("apps", applicationService.findDisapprovedByClientId(id));
         return "application/application-list";
     }
 
     @GetMapping("/employee/client/pending/{id}")
     public String findPendingByClientId(@PathVariable("id") int id, Model model) {
-        model.addAttribute("applications", applicationService.findPendingByClientId(id));
+        model.addAttribute("apps", applicationService.findPendingByClientId(id));
         return "application/application-list";
     }
 }

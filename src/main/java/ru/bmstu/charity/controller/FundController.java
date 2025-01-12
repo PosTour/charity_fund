@@ -16,7 +16,7 @@ public class FundController {
 
     private final FundService fundService;
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public String findById(@PathVariable("id") int id, Model model) {
         model.addAttribute("fund", fundService.findById(id).get());
         return "fund/fund";
@@ -26,6 +26,12 @@ public class FundController {
     public String findAll(Model model) {
         model.addAttribute("funds", fundService.findAll());
         return "fund/fund-list";
+    }
+
+    @GetMapping("/client")
+    public String findAllForClient(Model model) {
+        model.addAttribute("funds", fundService.findAll());
+        return "fund/fund-client-list";
     }
 
     @GetMapping("/new")

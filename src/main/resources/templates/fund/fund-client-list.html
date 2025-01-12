@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Главная - Клиент</title>
+    <title>Список фондов</title>
     <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
@@ -17,22 +17,34 @@
             <li><a href="/client/profile">Личный кабинет</a></li>
             <li><a href="/application/client">Мои заявки</a></li>
             <li><a href="/application/new">Создать заявку</a></li>
-            <li><a href="/fund/employee/client">Фонды</a></li>
+            <li><a href="/funds/list">Список фондов</a></li>
         </ul>
     </nav>
 </header>
 <main class="main">
-    <h2>Добро пожаловать!</h2>
-    <div class="welcome-text">
-        <p>Вы можете оставить заявку, просмотреть свои заявки или ознакомиться со списком фондов.</p>
-        <div class="news">
-            <h3>Новости организации</h3>
-            <ul>
-                <li>Новая акция по сбору средств на лечение детей</li>
-                <li>Мы открыли новый фонд для помощи семьям</li>
-                <li>Присоединяйтесь к нашим волонтерским программам</li>
-            </ul>
-        </div>
+    <h2>Список фондов</h2>
+
+    <div th:if="${funds.isEmpty()}">
+        <p class="no-data">Фонды отсутствуют.</p>
+    </div>
+
+    <div th:if="${!funds.isEmpty()}">
+        <table class="applications-table">
+            <thead>
+            <tr>
+                <th>Название</th>
+                <th>Электронная почта</th>
+                <th>Адрес</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="fund : ${funds}">
+                <td th:text="${fund.getName()}"></td>
+                <td th:text="${fund.getEmail()}"></td>
+                <td th:text="${fund.getAddress()}"></td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 </main>
 <footer class="footer">

@@ -217,3 +217,32 @@ textarea {
 .action-btn:hover {
     background-color: #218838;
 }
+
+.register-btn-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.register-btn {
+    padding: 12px 25px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.register-btn:hover {
+    background-color: #0056b3;
+}
+
+.error-message {
+    color: #d9534f;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+textarea:invalid {
+    border-color: #d9534f;
+}

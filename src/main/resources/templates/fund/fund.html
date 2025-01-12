@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Фонд</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<header class="header">
+    <div class="logo">
+        <a href="/employee/home"><img src="/icons/logo.jpeg" alt="Логотип" class="logo-img"></a>
+        <h1>Рука Помощи</h1>
+    </div>
+    <nav class="nav">
+        <ul class="nav-list">
+            <li><a href="/employee/profile">Личный кабинет</a></li>
+            <li><a href="/application/employee">Заявки</a></li>
+            <li><a href="/client/employee">Клиенты</a></li>
+            <li><a href="/employee">Сотрудники</a></li>
+            <li><a href="/fund/employee">Фонды</a></li>
+            <li><a href="/service/employee">Услуги</a></li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+    <h2>Детали заявки</h2>
+
+    <div class="details-container">
+        <div class="detail-item">
+            <span class="detail-label">Номер заявки:</span>
+            <span class="detail-value" th:text="${fund.getId()}"></span>
+        </div>
+        <div class="detail-item">
+            <span class="detail-label">Название:</span>
+            <span class="detail-value" th:text="${fund.getName()}"></span>
+        </div>
+        <div class="detail-item">
+            <span class="detail-label">Электронная почта:</span>
+            <span class="detail-value" th:text="${fund.getEmail()}"></span>
+        </div>
+        <div class="detail-item">
+            <span class="detail-label">Адрес:</span>
+            <span class="detail-value" th:text="${fund.getAddress()}"></span>
+        </div>
+    </div>
+
+    <div class="actions">
+        <a th:href="@{'/fund/employee'}" class="action-btn">Вернуться к списку</a>
+        <a th:href="@{'/application/employee/fund/' + ${fund.getId()}}" class="action-btn">Заявки фонду</a>
+        <a th:href="@{'/fund/employee/edit/' + ${fund.getId()}}" class="action-btn">Редактировать</a>
+    </div>
+</main>
+<footer class="footer">
+    <p>© Рука Помощи, 2024</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Фонды</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<header class="header">
+    <div class="logo">
+        <a href="/employee/home"><img src="/icons/logo.jpeg" alt="Логотип" class="logo-img"></a>
+        <h1>Рука Помощи</h1>
+    </div>
+    <nav class="nav">
+        <ul class="nav-list">
+            <li><a href="/employee/profile">Личный кабинет</a></li>
+            <li><a href="/application/employee">Заявки</a></li>
+            <li><a href="/client/employee">Клиенты</a></li>
+            <li><a href="/employee">Сотрудники</a></li>
+            <li><a href="/fund/employee">Фонды</a></li>
+            <li><a href="/service/employee">Услуги</a></li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+    <div class="register-btn-container">
+        <a href="/fund/employee/new" class="register-btn">Регистрация нового фонда</a>
+    </div>
+
+    <h2>Список фондов</h2>
+
+    <div th:if="${funds.isEmpty()}">
+        <p class="no-data">Фонды отсутствуют.</p>
+    </div>
+
+    <div th:if="${!funds.isEmpty()}">
+        <table class="applications-table">
+            <thead>
+            <tr>
+                <th>Номер</th>
+                <th>Название</th>
+                <th>Электронная почта</th>
+                <th>Адрес</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="fund : ${funds}">
+                <td th:text="${fund.getId()}"></td>
+                <td th:text="${fund.getName()}"></td>
+                <td th:text="${fund.getEmail()}"></td>
+                <td th:text="${fund.getAddress()}"></td>
+                <td>
+                    <a th:href="@{'/fund/employee/' + ${fund.getId()}}" class="action-btn">Просмотр</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+<footer class="footer">
+    <p>© Рука Помощи, 2024</p>
+</footer>
+</body>
+</html>

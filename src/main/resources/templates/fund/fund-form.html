@@ -32,17 +32,25 @@
         <div class="form-group">
             <label for="name">Название:</label>
             <textarea id="name" name="name" rows="5" required></textarea>
+            <div th:if="${#fields.hasErrors('name')}" class="error-message">
+                <p th:errors="*{name}">Ошибка в названии</p>
+            </div>
         </div>
 
         <div class="form-group">
             <label for="email">Электронная почта:</label>
             <textarea id="email" name="email" rows="5" required></textarea>
+            <div th:if="${#fields.hasErrors('email')}" class="error-message">
+                <p th:errors="*{email}">Ошибка в электронной почте</p>
+            </div>
         </div>
 
         <div class="form-group">
             <label for="address">Адрес:</label>
             <textarea id="address" name="address" rows="5" required></textarea>
-            <div style="color:red" th:if="${#fields.hasErrors('address')}" th:errors="*{address}">Phone Error</div>
+            <div th:if="${#fields.hasErrors('address')}" class="error-message">
+                <p th:errors="*{address}">Ошибка в адресе</p>
+            </div>
         </div>
 
         <button type="submit" class="submit-btn">Зарегистрировать</button>

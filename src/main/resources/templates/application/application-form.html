@@ -46,6 +46,9 @@
         <div class="form-group">
             <label for="details">Детали:</label>
             <textarea id="details" name="details" rows="5" required></textarea>
+            <div th:if="${#fields.hasErrors('details')}" class="error-message">
+                <p th:errors="*{details}">Ошибка в описании</p>
+            </div>
         </div>
 
         <button type="submit" class="submit-btn">Создать заявку</button>

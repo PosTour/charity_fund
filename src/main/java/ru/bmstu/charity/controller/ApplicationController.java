@@ -35,7 +35,7 @@ public class ApplicationController {
             return "application/application-form";
         }
         applicationService.save(application);
-        return "redirect:application/client";
+        return "redirect:/application/client";
     }
 
     @PatchMapping("/employee/approve/{id}")

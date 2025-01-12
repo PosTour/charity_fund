@@ -15,7 +15,7 @@
 </header>
 <main class="main">
     <h1>Регистрация клиента</h1>
-    <form th:method="POST" th:action="@{/auth/register}" th:object="${registrationDto}" class="registration-form">
+    <form th:method="POST" th:action="@{/auth/employee/register}" th:object="${registrationDto}" class="registration-form">
         <div class="form-group">
             <label for="username">Имя пользователя:</label>
             <input type="text" id="username" name="username" required />
@@ -29,18 +29,10 @@
             <input type="text" id="name" name="name" required />
         </div>
         <div class="form-group">
-            <label for="address">Адрес:</label>
-            <input type="text" id="address" name="address" required />
+            <label for="position">Должность:</label>
+            <input type="text" id="position" name="position" required />
         </div>
-        <div class="form-group">
-            <label for="phone">Телефон:</label>
-            <input type="text" id="phone" name="phone" required />
-        </div>
-        <div class="form-group">
-            <label for="email">Адрес электронной почты:</label>
-            <input type="email" id="email" name="email" required />
-        </div>
-        <button type="submit" class="submit-btn">Зарегистрироваться</button>
+        <button type="submit" class="submit-btn">Зарегистрировать</button>
     </form>
 </main>
 <footer class="footer">

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Клиент</title>
+    <title>Профиль</title>
     <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
@@ -24,33 +24,31 @@
     </nav>
 </header>
 <main class="main">
-    <h2>Клиент</h2>
+    <h2>Профиль</h2>
 
     <div class="details-container">
         <div class="detail-item">
             <span class="detail-label">Идентификатор:</span>
-            <span class="detail-value" th:text="${client.getId()}"></span>
+            <span class="detail-value" th:text="${employee.getId()}"></span>
         </div>
         <div class="detail-item">
             <span class="detail-label">Имя пользователя:</span>
-            <span class="detail-value" th:text="${client.getUsername()}"></span>
+            <span class="detail-value" th:text="${employee.getUsername()}"></span>
         </div>
         <div class="detail-item">
             <span class="detail-label">Полное имя:</span>
-            <span class="detail-value" th:text="${client.getName()}"></span>
+            <span class="detail-value" th:text="${employee.getName()}"></span>
         </div>
         <div class="detail-item">
-            <span class="detail-label">Номер телефона:</span>
-            <span class="detail-value" th:text="${client.getPhone()}"></span>
+            <span class="detail-label">Должность:</span>
+            <span class="detail-value" th:text="${employee.getPosition()}"></span>
         </div>
-        <div class="detail-item">
-            <span class="detail-label">Электронная почта:</span>
-            <span class="detail-value" th:text="${client.getEmail()}"></span>
-        </div>
-        <div class="detail-item">
-            <span class="detail-label">Адрес:</span>
-            <span class="detail-value" th:text="${client.getAddress()}"></span>
-        </div>
+    </div>
+
+    <div class="actions">
+        <form th:action="@{/logout}" th:method="POST" class="inline-form">
+            <button type="submit" class="action-btn approve-btn">Выйти из аккаунта</button>
+        </form>
     </div>
 </main>
 <footer class="footer">

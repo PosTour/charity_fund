@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сотрудники</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<header class="header">
+    <div class="logo">
+        <a href="/employee/home"><img src="/icons/logo.jpeg" alt="Логотип" class="logo-img"></a>
+        <h1>Рука Помощи</h1>
+    </div>
+    <nav class="nav">
+        <ul class="nav-list">
+            <li><a href="/employee/profile">Личный кабинет</a></li>
+            <li><a href="/application/employee">Заявки</a></li>
+            <li><a href="/client/employee">Клиенты</a></li>
+            <li><a href="/employee">Сотрудники</a></li>
+            <li><a href="/fund/employee">Фонды</a></li>
+            <li><a href="/service/employee">Услуги</a></li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+    <div class="register-btn-container">
+        <a href="/auth/employee/register" class="register-btn">Регистрация нового сотрудника</a>
+    </div>
+
+    <h2>Список сотрудников</h2>
+
+    <div th:if="${employees.isEmpty()}">
+        <p class="no-data">Нет зарегистрированных клиентов.</p>
+    </div>
+
+    <div th:if="${!employees.isEmpty()}">
+        <table class="applications-table">
+            <thead>
+            <tr>
+                <th>Идентификатор</th>
+                <th>Имя пользователя</th>
+                <th>Полное имя</th>
+                <th>Должность</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="employee : ${employees}">
+                <td th:text="${employee.getId()}"></td>
+                <td th:text="${employee.getUsername()}"></td>
+                <td th:text="${employee.getName()}"></td>
+                <td th:text="${employee.getPosition()}"></td>
+                <td>
+                    <a th:href="@{'/employee/' + ${employee.getId()}}" class="action-btn">Просмотр</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+<footer class="footer">
+    <p>© Рука Помощи, 2024</p>
+</footer>
+</body>
+</html>

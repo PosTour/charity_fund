@@ -22,19 +22,19 @@ public class EmployeeController {
 
     @GetMapping("profile")
     public String profile(Model model) {
-        model.addAttribute("employee", employeeService.findCurrentEmployee());
+        model.addAttribute("employee", employeeService.findCurrentEmployee().get());
         return "employee/employee-profile";
     }
 
     @GetMapping("{id}")
     public String findById(@PathVariable("id") int id, Model model) {
-        model.addAttribute("employee", employeeService.findById(id));
-        return "emloyee/employee";
+        model.addAttribute("employee", employeeService.findById(id).get());
+        return "employee/employee";
     }
 
     @GetMapping("")
     public String findAll(Model model) {
-        model.addAttribute("employee", employeeService.findAll());
-        return "emloyee/employee-list";
+        model.addAttribute("employees", employeeService.findAll());
+        return "employee/employee-list";
     }
 }

@@ -22,7 +22,7 @@ public class ClientController {
 
     @GetMapping("/profile")
     public String profile(Model model) {
-        model.addAttribute("client", clientService.findCurrentClient());
+        model.addAttribute("client", clientService.findCurrentClient().get());
         return "client/client-profile";
     }
 
@@ -32,7 +32,7 @@ public class ClientController {
         return "client/client";
     }
 
-    @GetMapping("/employee/")
+    @GetMapping("/employee")
     public String findAll(Model model) {
         model.addAttribute("clients", clientService.findAll());
         return "client/client-list";

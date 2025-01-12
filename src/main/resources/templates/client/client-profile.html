@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профиль</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<header class="header">
+    <div class="logo">
+        <a href="/client/home"><img src="/icons/logo.jpeg" alt="Логотип" class="logo-img"></a>
+        <h1>Рука Помощи</h1>
+    </div>
+    <nav class="nav">
+        <ul class="nav-list">
+            <li><a href="/client/profile">Личный кабинет</a></li>
+            <li><a href="/application/client">Мои заявки</a></li>
+            <li><a href="/application/new">Создать заявку</a></li>
+            <li><a href="/funds/list">Список фондов</a></li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+    <h2>Профиль</h2>
+
+    <div class="details-container">
+        <div class="detail-item">
+            <span class="detail-label">Имя пользователя:</span>
+            <span class="detail-value" th:text="${client.getUsername()}"></span>
+        </div>
+        <div class="detail-item">
+            <span class="detail-label">Полное имя:</span>
+            <span class="detail-value" th:text="${client.getName()}"></span>
+        </div>
+        <div class="detail-item">
+            <span class="detail-label">Номер телефона:</span>
+            <span class="detail-value" th:text="${client.getPhone()}"></span>
+        </div>
+        <div class="detail-item">
+            <span class="detail-label">Электронная почта:</span>
+            <span class="detail-value" th:text="${client.getEmail()}"></span>
+        </div>
+        <div class="detail-item">
+            <span class="detail-label">Адрес:</span>
+            <span class="detail-value" th:text="${client.getAddress()}"></span>
+        </div>
+    </div>
+
+    <div class="actions">
+        <form th:action="@{/logout}" th:method="POST" class="inline-form">
+            <button type="submit" class="action-btn approve-btn">Выйти из аккаунта</button>
+        </form>
+    </div>
+</main>
+<footer class="footer">
+    <p>© Рука Помощи, 2024</p>
+</footer>
+</body>
+</html>

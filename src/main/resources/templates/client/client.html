@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Фонд</title>
+    <title>Клиент</title>
     <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
@@ -24,31 +24,29 @@
     </nav>
 </header>
 <main class="main">
-    <h2>Детали заявки</h2>
+    <h2>Клиент</h2>
 
     <div class="details-container">
         <div class="detail-item">
-            <span class="detail-label">Идентификатор:</span>
-            <span class="detail-value" th:text="${fund.getId()}"></span>
+            <span class="detail-label">Имя пользователя:</span>
+            <span class="detail-value" th:text="${client.getUsername()}"></span>
         </div>
         <div class="detail-item">
-            <span class="detail-label">Название:</span>
-            <span class="detail-value" th:text="${fund.getName()}"></span>
+            <span class="detail-label">Полное имя:</span>
+            <span class="detail-value" th:text="${client.getName()}"></span>
+        </div>
+        <div class="detail-item">
+            <span class="detail-label">Номер телефона:</span>
+            <span class="detail-value" th:text="${client.getPhone()}"></span>
         </div>
         <div class="detail-item">
             <span class="detail-label">Электронная почта:</span>
-            <span class="detail-value" th:text="${fund.getEmail()}"></span>
+            <span class="detail-value" th:text="${client.getEmail()}"></span>
         </div>
         <div class="detail-item">
             <span class="detail-label">Адрес:</span>
-            <span class="detail-value" th:text="${fund.getAddress()}"></span>
+            <span class="detail-value" th:text="${client.getAddress()}"></span>
         </div>
-    </div>
-
-    <div class="actions">
-        <a th:href="@{'/fund/employee'}" class="action-btn">Вернуться к списку</a>
-        <a th:href="@{'/application/employee/fund/' + ${fund.getId()}}" class="action-btn">Заявки фонду</a>
-        <a th:href="@{'/fund/employee/edit/' + ${fund.getId()}}" class="action-btn">Редактировать</a>
     </div>
 </main>
 <footer class="footer">

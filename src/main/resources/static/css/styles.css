@@ -246,3 +246,54 @@ textarea {
 textarea:invalid {
     border-color: #d9534f;
 }
+
+.news {
+    margin-top: 20px;
+    text-align: left;
+}
+
+.news h3 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.news ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.news-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.news-img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.news-content {
+    max-width: calc(100% - 180px); /* Учитываем отступ и ширину картинки */
+}
+
+.news-title {
+    margin: 0 0 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    line-height: 1.4;
+}
+
+.news-description {
+    margin: 0;
+    font-size: 14px;
+    color: #555;
+    line-height: 1.4;
+}

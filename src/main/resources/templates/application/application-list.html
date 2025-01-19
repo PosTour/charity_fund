@@ -45,6 +45,7 @@
                 <th>Услуга</th>
                 <th>Клиент</th>
                 <th>Фонд</th>
+                <th>Дата создания</th>
                 <th>Статус</th>
                 <th>Действия</th>
             </tr>
@@ -54,6 +55,7 @@
                 <td th:text="${app.getId()}"></td>
                 <td th:text="${app.getService().getName()}"></td>
                 <td th:text="${app.getClient.getName()}"></td>
+                <td th:text="${app.getFund().getName()}"></td>
                 <td th:text="${app.getCreatedAt()}"></td>
                 <td th:text="${app.getStatus()}"></td>
                 <td>
